@@ -1,0 +1,7 @@
+{
+  "name": "Gestão de Suprimentos - Prefeitura",
+  "description": "Sistema robusto de controle de estoque de toners e tintas, focado em auditoria, transparência e facilidade de uso para órgãos governamentais.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
