@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Gestão de Suprimentos - Santa Bárbara</title>
+    
+    <script src="https://ga.jspm.io/npm:es-module-shims@1.10.0/dist/es-module-shims.js"></script>
+
+    <script>
+      window.process = { env: { NODE_ENV: 'production' } };
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+      :root { --safe-top: env(safe-area-inset-top); --safe-bottom: env(safe-area-inset-bottom); }
+      body { font-family: 'Inter', sans-serif; margin: 0; background: #f8fafc; color: #0f172a; }
+      #loading-screen {
+        position: fixed; inset: 0; background: #0f172a; display: flex; 
+        flex-direction: column; align-items: center; justify-content: center; z-index: 9999;
+        transition: opacity 0.4s ease;
+      }
+      .spinner {
+        width: 32px; height: 32px; border: 3px solid rgba(37, 99, 235, 0.1);
+        border-left-color: #2563eb; border-radius: 50%; animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@19.0.0",
+        "react/": "https://esm.sh/react@19.0.0/",
+        "react-dom": "https://esm.sh/react-dom@19.0.0",
+        "react-dom/": "https://esm.sh/react-dom@19.0.0/",
+        "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+        "react-router-dom": "https://esm.sh/react-router-dom@6.28.0?external=react,react-dom",
+        "lucide-react": "https://esm.sh/lucide-react@0.454.0?external=react",
+        "recharts": "https://esm.sh/recharts@2.13.0?external=react,react-dom"
+      }
+    }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="loading-screen">
+      <div class="spinner"></div>
+      <p style="font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; margin-top: 15px; color: #64748b;">
+        Inicializando Sistema...
+      </p>
+    </div>
+
+    <div id="root"></div>
+
+    <script type="module">
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('loading-screen');
+        setTimeout(() => {
+          if(loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => loader.remove(), 400);
+          }
+        }, 500);
+      });
+    </script>
+
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
